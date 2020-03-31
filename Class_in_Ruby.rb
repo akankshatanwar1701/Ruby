@@ -22,6 +22,7 @@ greeter.say_bye
 Greeter.instance_methods
 puts greeter.respond_to?("name")
 
+
 #Altering Classes, giving access to the objects variable
 class Greeter
 	attr_accessor  :name
@@ -33,6 +34,22 @@ puts greeter.name
 greeter.name="Becky"
 puts greeter.name
 greeter.say_hi
+
+
+#Inheritance, usage of variable of parent class
+class Salutation<Greeter
+	def name
+		puts "What is your name?"
+	end
+
+	def mood
+		puts "How are you feeling today #{@name}"
+	end
+end
+
+sal = Salutation.new("Nana")
+puts sal.mood
+
 
 
 class MegaGreeter
