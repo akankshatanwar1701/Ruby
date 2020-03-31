@@ -109,5 +109,56 @@ if __FILE__==$0
 	mg.say_bye
 end
 
+#Additional feature, Module v/s Inheritance
+
+# "is-a" relationship applies inheritance a bike is a vehicle
+# "can-do" relationship is mixed with module
+# naming convention of module "-able" suffix
+
+module Greetable
+	def greet1
+		"Can greet now!"
+	end
+end
+
+class FormalSpace
+	attr_accessor :name1, :num_people
+
+	def initialize(name1, num_people)
+		@name1 = name1
+		@num_people = num_people
+
+	end
+end
+
+class ITOffice < FormalSpace; end
+
+class Department < ITOffice
+	attr_reader :head_of_dept
+
+	include Greetable
+
+	@@num_people = 0
+
+	def initialize(name1, num_people, head_of_dept)
+		super(name1, num_people)
+		@head_of_dept = head_of_dept
+	end
+end
+
+class Meeting_Room < FormalSpace; end
+
+class NotPresenting < Meeting_Room
+	include Greetable
+end
+
+room_1 = ITOffice.new("Area1", 10)
+dept_1 = Department.new("SDE", 5 , "Akanksha" )
+
+puts room_1.num_people 
+puts dept_1.num_people
+puts dept_1.greet1 
+puts dept_1.head_of_dept
+
 
 
